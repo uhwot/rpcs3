@@ -5,6 +5,7 @@
 #include "Emu/Cell/Modules/sceNp.h"
 #include "Emu/Cell/Modules/sceNp2.h"
 #include "Emu/Cell/Modules/cellNetCtl.h"
+#include "Emu/Cell/Modules/cellSysutil.h"
 #include "Emu/Cell/timers.hpp"
 #include "Utilities/StrUtil.h"
 #include "Emu/IdManager.h"
@@ -1644,7 +1645,7 @@ namespace np
 		}
 
 		std::lock_guard lock(mutex_rpcn);
-		
+
 		if (!rpcn)
 		{
 			return SCE_NP_BASIC_ERROR_NOT_CONNECTED;
