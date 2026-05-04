@@ -1097,6 +1097,8 @@ namespace np
 		if (g_cfg.net.psn_status != np_psn_status::psn_rpcn)
 			return;
 
+		auto& nph = g_fxo->get<named_thread<np::np_handler>>();
+
 		while (thread_ctrl::state() != thread_state::aborting && !Emu.IsStopped())
 		{
 			bool sleep = true;
@@ -1275,6 +1277,7 @@ namespace np
 							strcpy_trunc(to_add.from.name.data, msg->first);
 
 							if (event == SCE_NP_BASIC_EVENT_INCOMING_BOOTABLE_INVITATION) {
+								nph.set_message_selected(SCE_NP_BASIC_SELECTED_INVITATION_DATA, msg_id);
 								sysutil_send_system_cmd(CELL_SYSUTIL_NP_INVITATION_SELECTED, 0);
 							}
 
