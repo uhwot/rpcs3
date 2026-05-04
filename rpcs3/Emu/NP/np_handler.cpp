@@ -1273,6 +1273,10 @@ namespace np
 							strcpy_trunc(to_add.from.userId.handle.data, msg->first);
 							strcpy_trunc(to_add.from.name.data, msg->first);
 
+							if (event == SCE_NP_BASIC_EVENT_INCOMING_BOOTABLE_INVITATION) {
+								sysutil_send_system_cmd(CELL_SYSUTIL_NP_INVITATION_SELECTED, 0);
+							}
+
 							queue_basic_event(std::move(to_add));
 							send_basic_event(event, 0, 0);
 						}
